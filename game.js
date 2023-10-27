@@ -13,10 +13,10 @@ const ROAD_WIDTH = 200;  // Define the width of the road
 const ROAD_CENTER = 380; // Center of the road (adjust accordingly)
 
 function preload() {
-  bgImage = loadImage('../assets/background.png');
-  scooterImage = loadImage('../assets/scooter.png');
-  rockImage = loadImage('../assets/rock.png');
-  bikeImage = loadImage('../assets/bike.png');
+  bgImage = loadImage('/assets/background.png');
+  scooterImage = loadImage('/assets/scooter.png');
+  rockImage = loadImage('/assets/rock.png');
+  bikeImage = loadImage('/assets/bike.png');
 
 }
 
