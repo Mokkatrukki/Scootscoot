@@ -8,6 +8,7 @@ let gameState = 'start';
 let startButton;
 let restartButton;
 let gameOverBanner;
+let score = 0;
 
 const ROAD_WIDTH = 200;  // Define the width of the road
 const ROAD_CENTER = 380; // Center of the road (adjust accordingly)
@@ -54,6 +55,7 @@ function restartGame() {
   scooter = new Scooter(); // Create a new scooter
   restartButton.hide(); // Hide the restart button
   gameOverBanner.hide(); // Hide the game over banner
+  score = 0; // Reset the score
   loop(); // Restart the draw loop
 }
 
@@ -64,6 +66,14 @@ function draw() {
 
     scooter.show();
     scooter.move();
+    // Display the score
+    fill(0); // Set the fill color to black
+    rect(10, 10, 150, 40); // Draw a rectangle
+  
+    // Display the score
+    fill(255); // Set the fill color to white
+    textSize(24); // Set the text size
+    text("Score: " + score, 20, 40); // Display the score
 
     // Randomly add obstacles
     if (random() < 0.02) {
@@ -73,6 +83,7 @@ function draw() {
         obstacles.push(new Bike());
       }
     }
+
 
     // Show and move obstacles
     for (let o of obstacles) {
@@ -86,6 +97,18 @@ function draw() {
         gameOverBanner.show(); // Show the game over banner
         restartButton.show(); // Show the restart button
         break;
+      }
+    }
+    for (let i = obstacles.length - 1; i >= 0; i--) {
+      let o = obstacles[i];
+
+      // If the obstacle has moved off the screen
+      if (o.y > height) {
+        // Remove the obstacle from the array
+        obstacles.splice(i, 1);
+
+        // Increment the score
+        score++;
       }
     }
   }
